@@ -20,108 +20,106 @@ body {
   line-height: 1.6;
 }
 
-/* ==== NAVBAR ==== */
+
+/* NAVBAR STYLE */
 .navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #0b6623; /* Hijau daun mangrove */
-  padding: 10px 20px;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1000;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    background: #0a6F3c;
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
 }
 
-/* Logo dan teks */
+/* LOGO + TITLE */
 .logo-container {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .logo {
-  width: 55px;
-  height: 55px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid white;
-  position: relative;
-  z-index: 2;
+    width: 50px;
 }
 
+/* TITLE */
 .site-title {
-  font-size: 18px;
-  font-weight: 600;
-  color: white;
-  letter-spacing: 1px;
-  text-transform: capitalize;
+    font-size: 18px;
+    font-weight: 600;
 }
 
-/* Link menu */
+/* NAV LINKS */
 .nav-links {
-  list-style: none;
-  display: flex;
-  gap: 20px;
+    list-style: none;
+    display: flex;
+    gap: 25px;
 }
 
 .nav-links li a {
-  color: white;
-  text-decoration: none;
-  font-weight: 500;
-  transition: 0.3s;
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
 }
 
-.nav-links li a:hover {
-  color: #b2fcb2;
-}
-
-/* Tombol hamburger */
-.menu-toggle {
-  display: none;
-  font-size: 28px;
-  color: white;
-  cursor: pointer;
-  user-select: none;
-}
-
-/* ===== RESPONSIVE (HP) ===== */
-@media (max-width: 768px) {
-  .nav-links {
-    position: absolute;
-    top: 70px;
-    right: 20px;
-    background-color: rgba(255, 255, 255, 0.95);
-    border-radius: 10px;
-    padding: 15px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+/* HAMBURGER */
+.hamburger {
+    width: 30px;
+    height: 25px;
     display: none;
     flex-direction: column;
-    text-align: right;
-  }
-
-  .nav-links.show {
-    display: flex;
-  }
-
-  .nav-links li a {
-    color: #0b6623;
-    font-weight: 600;
-    padding: 8px 0;
-  }
-
-  .menu-toggle {
-    display: block;
-  }
-
-  .site-title {
-    font-size: 14px;
-  }
+    justify-content: space-between;
+    cursor: pointer;
 }
 
-/* ====== Hero Section ====== */
+.hamburger span {
+    height: 3px;
+    width: 100%;
+    background: white;
+    border-radius: 3px;
+    transition: 0.3s;
+}
+
+/* ANIMASI CLOSE (X) */
+.hamburger.active span:nth-child(1) {
+    transform: translateY(11px) rotate(45deg);
+}
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+.hamburger.active span:nth-child(3) {
+    transform: translateY(-11px) rotate(-45deg);
+}
+
+/* RESPONSIVE */
+@media (max-width: 780px) {
+    .nav-links {
+        position: absolute;
+        top: 65px;
+        right: 10px;
+        background: rgba(10, 111, 60, 0.92);
+        width: 180px;
+        padding: 15px 0;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        border-radius: 10px;
+        display: none;
+    }
+
+    .nav-links.show {
+        display: flex;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+}
+
 /* ====== Hero Section ====== */
 .hero {
   position: relative;
