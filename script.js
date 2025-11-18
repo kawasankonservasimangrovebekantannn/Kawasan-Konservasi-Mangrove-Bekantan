@@ -1,41 +1,56 @@
-function scrollToSection(id) {
-    document.getElementById(id).scrollIntoView({ behavior: "smooth" });
-  }
-  
-  document.querySelector("form").addEventListener("submit", (e) => {
-    e.preventDefault();
-    alert("Terima kasih! Pesan Anda telah terkirim 🌿");
-    e.target.reset();
-  });
-  
-  // Leaflet Map
-  const map = L.map("map").setView([3.3268, 117.5785], 13);
-  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-    maxZoom: 18,
-    attribution: "© OpenStreetMap",
-  }).addTo(map);
-  L.marker([3.3268, 117.5785])
-    .addTo(map)
-    .bindPopup("<b>Kawasan Konservasi Mangrove Bekantan</b><br>Tarakan, Kalimantan Utara.")
-    .openPopup();
-  
-  // Animasi Scroll (AOS)
-  AOS.init({ duration: 1000, once: true })
-
-// ===== Navbar Responsive Toggle =====
-const menuToggle = document.getElementById("menu-toggle");
+/* ============================
+   HAMBURGER MENU ANIMATION
+============================= */
+const hamburger = document.getElementById("hamburger");
 const navLinks = document.getElementById("nav-links");
 
-// Klik tombol hamburger untuk buka/tutup
-menuToggle.addEventListener("click", () => {
-  menuToggle.classList.toggle("active");
-  navLinks.classList.toggle("show");
+hamburger.addEventListener("click", () => {
+    hamburger.classList.toggle("active");
+    navLinks.classList.toggle("active");
 });
 
-// Klik di luar menu untuk menutup
-document.addEventListener("click", (e) => {
-  if (!menuToggle.contains(e.target) && !navLinks.contains(e.target)) {
-    menuToggle.classList.remove("active");
-    navLinks.classList.remove("show");
-  }
+
+/* ============================
+   POPUP GALERI
+============================= */
+
+const popupBg = document.createElement("div");
+popupBg.className = "popup-bg";
+
+const popupContent = document.createElement("div");
+popupContent.className = "popup-content";
+
+popupBg.appendChild(popupContent);
+document.body.appendChild(popupBg);
+
+// Close popup function
+function closePopup() {
+    popupBg.style.display = "none";
+}
+
+// Click outside closes popup
+popupBg.addEventListener("click", (e) => {
+    if (e.target === popupBg) closePopup();
+});
+
+// Add click events to gallery items
+document.addEventListener("DOMContentLoaded", () => {
+    const items = document.querySelectorAll(".gallery-item");
+
+    items.forEach(item => {
+        item.addEventListener("click", () => {
+            const imgSrc = item.dataset.img;
+            const title = item.dataset.title;
+            const desc = item.dataset.desc;
+
+            popupContent.innerHTML = `
+                <img src="${imgSrc}" alt="${title}">
+                <h2>${title}</h2>
+                <p>${desc}</p>
+                <div class="close-popup" onclick="closePopup()">Tutup</div>
+            `;
+
+            popupBg.style.display = "flex";
+        });
+    });
 });
